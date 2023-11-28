@@ -1,0 +1,45 @@
+.container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 10px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.archives .archive {
+  padding: 10px;
+  border-bottom: 1px solid #eaeaea;
+  display: flex;
+  align-items: center;
+}
+
+.archive:last-child {
+  border-bottom: none;
+}
+
+.title {
+  flex-grow: 1;
+  font-weight: bold;
+}
+
+.deadline {
+  color: #999;
+  font-style: italic;
+  margin-right: 20px;
+}
+
+.actions {
+  margin-left: auto;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  background-color: #007bff;
+  cursor: pointer;
+}
