@@ -2,37 +2,40 @@
   max-width: 600px;
   margin: 20px auto;
   padding: 10px;
-  background: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.tasks .task {
+.task {
   padding: 10px;
   border-bottom: 1px solid #eaeaea;
   display: flex;
   align-items: center;
 }
 
-.tasks .task:last-child {
+.task:last-child {
   border-bottom: none;
 }
 
-.tasks .task .title {
+.task.completed {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.title {
   flex-grow: 1;
   font-weight: bold;
 }
 
-.tasks .task .deadline {
-  color: #999;
+.deadline {
   font-style: italic;
 }
 
-.tasks .task .actions {
+.actions {
   margin-left: auto;
 }
 
-.tasks .task .actions input[type="checkbox"] {
+.actions input[type="checkbox"] {
   transform: scale(1.2);
   margin-left: 10px;
 }
@@ -41,33 +44,5 @@
   max-width: 400px;
   margin: 20px auto;
   padding: 20px;
-  border: 1px solid #cccccc;
   border-radius: 4px;
-}
-
-.form-group {
-  margin-bottom: 10px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.form-control {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #cccccc;
-  border-radius: 4px;
-}
-
-.btn {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  color: white;
-  background-color: #007bff;
-  cursor: pointer;
 }

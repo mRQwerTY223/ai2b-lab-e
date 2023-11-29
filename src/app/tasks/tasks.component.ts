@@ -19,6 +19,7 @@ export class TasksComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isProcessing = true;
     this.tasksService.index().subscribe((tasks) => {
       this.tasks = tasks;
     });
@@ -26,7 +27,7 @@ export class TasksComponent implements OnInit {
   }
 
   addTask() {
-    if (this.newTask.title === undefined) {
+    if (this.canAddTask()) {
       return;
     }
     this.newTask.completed = false;
@@ -59,9 +60,22 @@ export class TasksComponent implements OnInit {
       observables.push(this.tasksService.put(task));
     }
 
-    // refresh page when all updates finished
     forkJoin(observables).subscribe(() => {
       this.ngOnInit();
     });
+  }
+
+  canArchiveCompleted() {
+    for (const task of this.tasks) {
+      if (task.completed) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  canAddTask() {
+    return this.newTask.title !== undefined && this.newTask.title !== '';
   }
 }

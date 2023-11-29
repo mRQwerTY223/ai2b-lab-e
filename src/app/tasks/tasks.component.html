@@ -1,31 +1,41 @@
 <div class="container">
   <form class="new-task">
-    <div class="form-group">
-      <label for="title">Title</label>
-      <input type="text" id="title" name="title" [(ngModel)]="newTask.title" class="form-control" [disabled]="isProcessing" />
-    </div>
-    <div class="form-group">
-      <label for="deadline">Deadline</label>
-      <input type="date" id="deadline" name="title" [(ngModel)]="newTask.deadline" class="form-control" [disabled]="isProcessing" />
-    </div>
-    <div class="form-group">
-      <button type="button" class="btn btn-primary" (click)="addTask()" [disabled]="isProcessing">
-        {{isProcessing ? 'Processing...' : 'Add Task'}}
-      </button>
-    </div>
-
+    <p>
+      <mat-form-field appearance="outline" [style.width.%]=100>
+        <mat-label>Title</mat-label>
+        <input matInput type="text" id="title" name="title" [(ngModel)]="newTask.title" [disabled]="isProcessing"/>
+        <mat-hint>Enter at least 1 character.</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline" [style.width.%]=100>
+        <label for="deadline">Deadline</label>
+        <input matInput type="date" id="deadline" name="title" [(ngModel)]="newTask.deadline" [matDatepicker]="picker"
+               [disabled]="isProcessing"/>
+        <mat-hint>Specifying date is optional.</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </p>
+    <button type="button" (click)="addTask()" [disabled]="!canAddTask()" mat-raised-button color="accent">
+      {{'Add Task'}}
+    </button>
   </form>
 
   <div class="tasks">
-    <div class="task" *ngFor="let task of tasks">
-      <div class="title">{{ task.title }}</div>
-      <div class="deadline">
-        <span *ngIf="task.deadline">{{ task.deadline }}</span>
-      </div>
-      <div class="actions">
-        <input type="checkbox" [(ngModel)]="task.completed" (change)="handleChange(task)" />
-      </div>
+    <div class="task" [class.completed]="task.completed" *ngFor="let task of tasks">
+      <mat-card appearance="outlined" [style.width.%]=100>
+        <mat-card-header>
+          <mat-card-title class="title">{{ task.title }}</mat-card-title>
+          <mat-card-subtitle *ngIf="task.deadline">{{ task.deadline }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-actions align="end">
+          <mat-checkbox [(ngModel)]="task.completed" (change)="handleChange(task)"></mat-checkbox>
+        </mat-card-actions>
+      </mat-card>
     </div>
   </div>
-  <button class="btn btn-primary" (click)="archiveCompleted()">Archive Completed</button>
+  <button (click)="archiveCompleted()" mat-raised-button color="primary" [disabled]="!canArchiveCompleted()">Archive
+    Completed
+  </button>
 </div>

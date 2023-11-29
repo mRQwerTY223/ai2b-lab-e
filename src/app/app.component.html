@@ -1,17 +1,18 @@
 <header>
-  <nav class="header-nav">
-    <h1>Local Storage Contact List</h1>
-    <span class="links">
-    <a class="link" [routerLink]="'/tasks'">Tasks</a>
-    <a class="link" [routerLink]="'/archive'">Archive</a>
-    </span>
-  </nav>
+  <mat-toolbar>
+    <h1>Task Manager</h1>
+    <span class="spacer"></span>
+    <mat-chip-listbox>
+    <mat-chip-option [routerLink]="'/tasks'" #rlat="routerLinkActive" routerLinkActive="active" [selected]="rlat.isActive">Tasks</mat-chip-option>
+    <mat-chip-option [routerLink]="'/archive'" routerLinkActive="active" #rlaa="routerLinkActive" [selected]="rlaa.isActive">Archive</mat-chip-option>
+    </mat-chip-listbox>
+  </mat-toolbar>
 </header>
 
 <div class="router-outlet">
   <router-outlet></router-outlet>
 </div>
 
-<footer>
+<mat-toolbar color="accent">
   Marek Zydor
-</footer>
+</mat-toolbar>
